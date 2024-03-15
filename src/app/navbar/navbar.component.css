@@ -1,0 +1,59 @@
+.navbar {
+  height: 50px;
+}
+
+/* LOGO */
+.logo {
+  height: 70px;
+
+  padding: 10px;
+
+  text-align: center;
+  line-height: 40px;
+}
+
+.logo h1 {
+  margin: 0;
+  padding: 0;
+
+  background: #cf0000;
+  background: linear-gradient(to top right, #cf0000 12%, #b700ff 93%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.logo span {
+  font-weight: 500;
+  line-height: 10px;
+
+  color: rgb(255, 255, 255);
+}
+
+/* INPUT */
+.input-field {
+  height: 50px;
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 10px;
+}
+
+.input-field input {
+  height: 45px;
+  width: 444px;
+
+  padding: 0px 10px 0px 10px;
+
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 500;
+
+  border: 3px solid #ff204e;
+  border-radius: 25px;
+}
+
+.input-field input:focus {
+  outline: none;
+}
