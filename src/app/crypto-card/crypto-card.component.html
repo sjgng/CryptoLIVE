@@ -1,1 +1,22 @@
-<p>crypto-card works!</p>
+<article>
+  <div class="thumbnail"><img src="{{ cryptoItemData.thumbnail }}" /></div>
+  <div class="title">
+    <span>{{ cryptoItemData.title }}</span>
+    <span
+      style="
+        background-color: rgba(255, 255, 255, 0.37);
+        border-radius: 25px;
+        padding-left: 10px;
+        padding-right: 10px;
+        margin-left: 10px;
+      "
+      >{{ cryptoItemData.tags[0] }}</span
+    >
+  </div>
+  <div class="description">
+    <span> 1 BCH ≈ {{ 32.21 }} PLN</span>
+    {{ " | " }}
+    <span> Rank: #1 </span>
+  </div>
+  <div class="fav-btn"><button>ADD TO FAVOURITE</button></div>
+</article>

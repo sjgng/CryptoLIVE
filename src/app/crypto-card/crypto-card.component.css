@@ -1,0 +1,96 @@
+article {
+  width: 330px;
+  height: 370px;
+
+  display: flex;
+  flex-direction: column;
+
+  overflow: hidden;
+
+  background: #0ac18daf;
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(11.9px);
+  -webkit-backdrop-filter: blur(11.9px);
+  border: 1px solid rgba(113, 219, 120, 0.52);
+}
+
+article div {
+  flex: 1;
+}
+
+.title {
+  height: fit-content;
+  flex: 0 !important;
+
+  color: #ffffff;
+  text-shadow: 0 0 3px #ffffff;
+  text-align: center;
+
+  padding: 5px;
+
+  font-weight: 700;
+  font-size: 25px;
+}
+
+/* DESCRIPTION */
+.description {
+  flex-shrink: 0 !important;
+  flex-grow: 0 !important;
+  flex-basis: 40px !important;
+
+  color: #ffffffbd;
+
+  font-weight: 700 !important;
+
+  line-height: 30px;
+
+  margin: auto;
+}
+
+.description span {
+  height: 24px;
+  display: inline-block; /* or block */
+
+  line-height: 12px;
+}
+
+.description svg {
+  margin: 0;
+  padding: 0;
+}
+
+/* BUTTON */
+.fav-btn {
+  width: 100%;
+  flex: 1;
+}
+
+.fav-btn button {
+  width: 100%;
+  height: 100%;
+
+  font-size: 18px;
+  font-weight: 500;
+
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+
+  border: none;
+}
+
+.fav-btn button:hover {
+  cursor: pointer;
+  font-size: 20px;
+}
+
+/* IMAGE DIV */
+article div:nth-child(1) img {
+  padding: 15px 0;
+
+  width: 200px;
+  display: block;
+
+  margin: auto;
+}
