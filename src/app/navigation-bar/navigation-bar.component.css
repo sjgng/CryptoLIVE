@@ -1,0 +1,29 @@
+.navigation-bar {
+  width: 100%;
+}
+
+.navigation-bar ul {
+  width: fit-content;
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+
+  font-size: 25px;
+
+  margin: 0 auto;
+  padding: 25px;
+}
+
+.navigation-bar ul li {
+  display: inline-block;
+}
+
+.navigation-bar ul li a {
+  color: white;
+  text-decoration: none;
+}
+
+.active-page {
+  text-decoration: underline !important;
+  text-underline-offset: 4px !important;
+}
