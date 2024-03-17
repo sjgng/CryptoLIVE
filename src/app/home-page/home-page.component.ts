@@ -7,6 +7,9 @@ import { CryptoCardComponent } from '../crypto-card/crypto-card.component';
 // Services
 import { CryptoCardsService } from '../crypto-cards.service';
 
+// Types
+import { CryptoCoins } from '../cryptocoins';
+
 @Component({
   selector: 'app-home-page',
   standalone: true,
@@ -15,12 +18,16 @@ import { CryptoCardsService } from '../crypto-cards.service';
   styleUrl: './home-page.component.css',
 })
 export class HomePageComponent {
-  cryptoItemList: any = [];
+  cryptoItemList: CryptoCoins[] = [];
   cryptoService = inject(CryptoCardsService);
 
   constructor() {
-    this.cryptoItemList = this.cryptoService.getAllCryptoItems();
-
-    console.log(this.cryptoItemList);
+    this.cryptoService
+      .fetchAllCryptoCoins()
+      .then((res) => {
+        this.cryptoItemList = res;
+        console.log(this.cryptoItemList);
+      })
+      .catch((err) => console.error(err));
   }
 }
