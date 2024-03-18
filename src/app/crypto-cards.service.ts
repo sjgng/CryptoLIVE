@@ -13,21 +13,20 @@ export class CryptoCardsService {
   constructor() {}
 
   async fetchAllCryptoCoins(): Promise<CryptoCoins[]> {
-    let cryptoData: CryptoCoins[] = [];
-    const data = await fetch(this.COINGECKO_API_URL);
+    const response = await fetch(this.COINGECKO_API_URL);
+    const data = await response.json();
 
-    await data.json().then((res) => {
-      res.forEach((coin: CoinGeckoApiData) => {
-        cryptoData.push({
-          id: coin.id,
-          symbol: coin.symbol,
-          name: coin.name,
-          image: coin.image,
-          current_price: coin.current_price,
-          market_cap: coin.market_cap,
-          market_cap_rank: coin.market_cap_rank,
-        });
-      });
+    const cryptoData: CryptoCoins[] = data.map((coin: CoinGeckoApiData) => {
+      return {
+        id: coin.id,
+        symbol: coin.symbol,
+        name: coin.name,
+        image: coin.image,
+        current_price: coin.current_price,
+        market_cap: coin.market_cap,
+        market_cap_rank: coin.market_cap_rank,
+        color: 'rgb(1,1,1)',
+      };
     });
 
     return cryptoData ?? [];

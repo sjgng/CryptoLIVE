@@ -1,7 +1,7 @@
-<article>
-  <div class="thumbnail"><img src="{{ cryptoItemData.thumbnail }}" /></div>
+<article title="{{ cryptoItemData.name }}">
+  <div class="thumbnail"><img src="{{ cryptoItemData.image }}" /></div>
   <div class="title">
-    <span>{{ cryptoItemData.title }}</span>
+    <span>{{ cryptoItemData.name }}</span>
     <span
       style="
         background-color: rgba(255, 255, 255, 0.37);
@@ -10,13 +10,17 @@
         padding-right: 10px;
         margin-left: 10px;
       "
-      >{{ cryptoItemData.tags[0] }}</span
+      >{{ cryptoItemData.symbol.toUpperCase() }}</span
     >
   </div>
   <div class="description">
-    <span> 1 BCH ≈ {{ 32.21 }} PLN</span>
-    {{ " | " }}
-    <span> Rank: #1 </span>
+    <span>
+      1 {{ cryptoItemData.symbol.toUpperCase() }} ≈
+      {{ cryptoItemData.current_price }} PLN</span
+    >
+  </div>
+  <div class="ranking">
+    <span> #{{ cryptoItemData.market_cap_rank }} </span>
   </div>
   <div class="fav-btn"><button>ADD TO FAVOURITE</button></div>
 </article>

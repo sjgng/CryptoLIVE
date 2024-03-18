@@ -6,6 +6,7 @@ export interface CryptoCoins {
   current_price: number;
   market_cap: number;
   market_cap_rank: number;
+  color: string;
 }
 
 export interface CoinGeckoApiData {
