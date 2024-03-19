@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+
+// Services
+import { CryptoCardsService } from '../crypto-cards.service';
 
 @Component({
   selector: 'app-navbar',
@@ -9,4 +12,9 @@ import { Component } from '@angular/core';
 })
 export class NavbarComponent {
   title: string = 'CryptoTwitch';
+  cryptoCoinsServce = inject(CryptoCardsService);
+
+  filterCoins(value: string) {
+    this.cryptoCoinsServce.filterCryptoCoins(value);
+  }
 }

@@ -5,7 +5,12 @@
   </div>
   <div class="input-field">
     <div class="input-container">
-      <input type="text" placeholder="Type your favorite cryptocurrency" />
+      <input
+        #searchInput
+        (keyup)="filterCoins(searchInput.value)"
+        type="text"
+        placeholder="Type your favorite cryptocurrency"
+      />
     </div>
   </div>
   <div class="user"></div>

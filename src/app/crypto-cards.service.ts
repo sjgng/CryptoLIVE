@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 // Types
 import { CryptoCoins, CoinGeckoApiData } from './cryptocoins';
@@ -10,9 +11,19 @@ export class CryptoCardsService {
   readonly COINGECKO_API_URL =
     'https://api.coingecko.com/api/v3/coins/markets?vs_currency=pln&order=market_cap_desc';
 
-  constructor() {}
+  private filteredCryptoCoinsList: CryptoCoins[] = [];
+  private cryptoItemList: CryptoCoins[] = [];
+  private filteredListSubject: BehaviorSubject<CryptoCoins[]> =
+    new BehaviorSubject<CryptoCoins[]>(this.filteredCryptoCoinsList);
 
-  async fetchAllCryptoCoins(): Promise<CryptoCoins[]> {
+  filteredCryptoItemList$: Observable<CryptoCoins[]> =
+    this.filteredListSubject.asObservable();
+
+  constructor() {
+    this.fetchAllCryptoCoins();
+  }
+
+  async fetchAllCryptoCoins(): Promise<void> {
     const response = await fetch(this.COINGECKO_API_URL);
     const data = await response.json();
 
@@ -29,6 +40,27 @@ export class CryptoCardsService {
       };
     });
 
-    return cryptoData ?? [];
+    this.cryptoItemList = cryptoData;
+    this.filteredCryptoCoinsList = this.cryptoItemList;
+    this.filteredListSubject.next(this.filteredCryptoCoinsList);
+  }
+
+  getAllCryptoCoins() {
+    return this.filteredCryptoCoinsList;
+  }
+
+  filterCryptoCoins(value: string) {
+    if (value.length >= 3) {
+      this.filteredCryptoCoinsList = this.cryptoItemList.filter(
+        (coin: CryptoCoins) => {
+          return coin.name.toLowerCase().includes(value.toLowerCase());
+        }
+      );
+      console.log(this.filteredCryptoCoinsList);
+      this.filteredListSubject.next(this.filteredCryptoCoinsList);
+    } else {
+      this.filteredCryptoCoinsList = this.cryptoItemList;
+      this.filteredListSubject.next(this.filteredCryptoCoinsList);
+    }
   }
 }

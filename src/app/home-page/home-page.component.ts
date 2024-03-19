@@ -1,10 +1,11 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Subscription } from 'rxjs';
 
 // Components
 import { CryptoCardComponent } from '../crypto-card/crypto-card.component';
 
-// Services
+// Service
 import { CryptoCardsService } from '../crypto-cards.service';
 
 // Types
@@ -17,17 +18,20 @@ import { CryptoCoins } from '../cryptocoins';
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.css',
 })
-export class HomePageComponent {
-  cryptoItemList: CryptoCoins[] = [];
-  cryptoService = inject(CryptoCardsService);
+export class HomePageComponent implements OnInit, OnDestroy {
+  cryptoCoinsItemList: CryptoCoins[] = [];
 
-  constructor() {
-    this.cryptoService
-      .fetchAllCryptoCoins()
-      .then((res) => {
-        this.cryptoItemList = res;
-        console.log(this.cryptoItemList);
-      })
-      .catch((err) => console.error(err));
+  subscription: Subscription = new Subscription();
+
+  constructor(private cryptoCardsService: CryptoCardsService) {}
+
+  ngOnInit(): void {
+    this.subscription =
+      this.cryptoCardsService.filteredCryptoItemList$.subscribe(
+        (filteredItemList) => (this.cryptoCoinsItemList = filteredItemList)
+      );
+  }
+  ngOnDestroy(): void {
+    this.subscription && this.subscription.unsubscribe();
   }
 }
